@@ -78,7 +78,9 @@ export function SiteHeader() {
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
-              aria-controls="mobile-menu"
+              // Only reference the menu while it exists in the DOM — a dangling
+              // aria-controls id fails axe's aria-valid-attr-value check.
+              aria-controls={open ? "mobile-menu" : undefined}
               aria-label={open ? "Close menu" : "Open menu"}
               className="grid h-11 w-11 place-items-center rounded-full border border-line text-ink transition-colors hover:border-accent hover:text-accent lg:hidden"
             >
